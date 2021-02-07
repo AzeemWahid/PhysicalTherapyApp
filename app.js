@@ -12,7 +12,6 @@ const app = express();
 
 
 // define routes
-const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const patientsRouter = require('./routes/patients');
 
@@ -28,7 +27,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // register routes
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/patients', patientsRouter);
 
