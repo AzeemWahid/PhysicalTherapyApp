@@ -3,9 +3,11 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const serveStatic = require('serve-static')
 const mongoose = require('mongoose');
 
-const port = 3000;
+const port = process.env.PORT || 3000;
+
 const app = express();
 
 // define routes
@@ -44,6 +46,15 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//here we are configuring dist to serve app files
+app.use('/', serveStatic(path.join(__dirname, '/dist')))
+
+//for heroku
+// this * route is to serve project on different page routes except root `/`
+app.get(/.*/, function (req, res) {
+	res.sendFile(path.join(__dirname, '/dist/index.html'))
+})
 
 //connect to db and listen
 app.listen(port, () => {
