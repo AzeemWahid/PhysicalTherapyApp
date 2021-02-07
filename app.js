@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
+/*
 // define routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -27,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // register routes
-//app.use('/', indexRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/patients', patientsRouter);
 
@@ -46,6 +47,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+*/
 
 //here we are configuring dist to serve app files
 app.use('/', serveStatic(path.join(__dirname, 'Client/dist')))
