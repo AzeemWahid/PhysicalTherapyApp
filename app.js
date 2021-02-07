@@ -52,6 +52,7 @@ app.use(function (err, req, res, next) {
 
 //for heroku
 //here we are configuring dist to serve app files
+app.use('/', serveStatic(path.join(__dirname, '/client/dist')))
 
 //for heroku
 // this * route is to serve project on different page routes except root `/`
