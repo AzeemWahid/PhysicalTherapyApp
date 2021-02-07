@@ -1,0 +1,7 @@
+{
+  "name": "PhysicalTherapyApplication",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
