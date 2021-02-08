@@ -10,6 +10,10 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
+const indexRouter = require('./routes/index');
+
+app.use('/index', indexRouter);
+
 
 //for heroku
 //here we are configuring dist to serve app files
