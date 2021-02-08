@@ -26,6 +26,7 @@
             "purpose": "maskable"
         }
     ],
+    "start": ".",
     "display": "standalone",
     "background_color": "#000000"
 }
