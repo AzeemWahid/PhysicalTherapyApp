@@ -9,13 +9,17 @@
       </ion-toolbar>
     </ion-header>
     <ion-menu content-id="menu" type="push">
+      <ion-header>
+        <ion-toolbar color="tertiary">
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
       <ion-content>
         <ion-list>
-          <ion-item>Menu Item</ion-item>
-          <ion-item>Menu Item</ion-item>
-          <ion-item>Menu Item</ion-item>
-          <ion-item>Menu Item</ion-item>
-          <ion-item>Menu Item</ion-item>
+          <ion-item>Patients</ion-item>
+          <ion-item>Providers</ion-item>
+          <ion-item>Accounts</ion-item>
+          <ion-item>blank</ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>
