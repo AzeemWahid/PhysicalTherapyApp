@@ -5,15 +5,20 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const serveStatic = require('serve-static')
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const port = process.env.PORT || 3000;
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
 const indexRouter = require('./routes/index');
+const userRouter = require('./routes/users');
 
 app.use('/index', indexRouter);
-
+app.use('/users', userRouter);
 
 //for heroku
 //here we are configuring dist to serve app files
