@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* POST user */
-router.post('/handle', userController.createUser);
+router.post('/handle', userController.searchUserEmail);
+router.post('/login', userController.login);
 
 module.exports = router;

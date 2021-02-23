@@ -9,3 +9,12 @@
 .c-bg{
   --ion-background-color: #B6FA27;
 }
+
+.toast{
+  text-align: center;
+  color: black;
+}
+
+.link{
+  text-decoration: none;
+}

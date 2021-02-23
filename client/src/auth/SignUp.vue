@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content class="bg">
-      <ion-grid class="vertical-center">
+      <ion-grid class="vertical-center ion-grid-width-sm">
         <ion-row>
           <ion-col>
             <ion-card class="center-text form-width margin-auto c-bg">
@@ -11,7 +11,33 @@
                 </ion-card-header>
 
                 <ion-grid>
-                  <ion-row>
+                  <ion-card class="sub-card ion-padding-bottom">
+                    <ion-row>
+                      <ion-col>
+                        <ion-card-subtitle>
+                          Are you a patient seeking help or a phyiscal therapy
+                          provider?
+                        </ion-card-subtitle>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row class="ion-justify-content-evenly">
+                      <ion-radio-group v-on:ionChange="radioValue($event)">
+                        <ion-col size="4">
+                          <ion-radio value="patient" class="radio"></ion-radio>
+                          <ion-label> PT Patient </ion-label>
+                        </ion-col>
+
+                        <ion-col size="4">
+                          <ion-radio value="provider" class="radio"></ion-radio>
+                          <ion-label class="radio-label">PT Provider</ion-label>
+                        </ion-col>
+                      </ion-radio-group>
+                      <p v-if="!userTypeValid">Please select a choice</p>
+                    </ion-row>
+                  </ion-card>
+
+                  <ion-row class="ion-margin-top">
                     <ion-col>
                       <ion-card-content>
                         <input
@@ -21,6 +47,7 @@
                           placeholder="Name"
                           v-model="name"
                         />
+                        <p v-if="!nameIsValid">Please enter a valid name</p>
                       </ion-card-content>
                     </ion-col>
                   </ion-row>
@@ -83,6 +110,10 @@
                   </router-link>
                   instead
                 </ion-card-subtitle>
+
+                <ion-card-subtitle color="danger" v-if="accountExists">
+                  An account already exists with this email, Login Instead
+                </ion-card-subtitle>
               </form>
             </ion-card>
           </ion-col>
@@ -101,6 +132,13 @@ import {
   IonCardSubtitle,
   IonCardContent,
   IonPage,
+  IonLabel,
+  IonCheckbox,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonButton,
+  toastController,
 } from "@ionic/vue";
 import Login from "./Login";
 
@@ -114,6 +152,13 @@ export default {
     IonCardSubtitle,
     IonCardContent,
     IonPage,
+    IonCheckbox,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonButton,
+    IonLabel,
+    toastController,
   },
 
   data() {
@@ -122,18 +167,34 @@ export default {
       name: "",
       email: "",
       password: "",
-      formIsValid: true,
+      patient: "",
+      provider: "",
+      userType: "",
+      nameIsValid: true,
       pwIsValid: true,
       emailIsValid: true,
+      userTypeValid: true,
+      accountExists: false,
+      accountCreated: "",
+      accountCreatedMessage: "",
     };
   },
 
   methods: {
+    radioValue(val) {
+      this.userType = val.target.value;
+      //console.log(this.userType);
+    },
+
     submitForm() {
-      this.formIsValid = true;
+      this.nameIsValid = true;
       this.pwIsValid = true;
       this.emailIsValid = true;
+      this.userTypeValid = true;
 
+      if (this.name === "" || this.name.length < 2) {
+        this.nameIsValid = false;
+      }
       if (
         this.email === "" ||
         !this.email.includes("@") ||
@@ -144,22 +205,55 @@ export default {
       if (this.password === "" || this.password.length < 6) {
         this.pwIsValid = false;
       }
-      if (!this.emailIsValid || !this.formIsValid) {
-        this.formIsValid = false;
+      if (this.userType === "") {
+        this.userTypeValid = false;
+      }
+      if (
+        !this.nameIsValid ||
+        !this.emailIsValid ||
+        !this.pwIsValid ||
+        !this.userTypeValid
+      ) {
         return;
       }
 
       //send http request
 
-     console.log("url ", this.url);
-
       this.$axios
-        .post(this.url + '/users/handle', {
+        .post(this.url + "/users/handle", {
           name: this.name,
           email: this.email,
           password: this.password,
+          userType: this.userType
         })
-        .then((res) => console.log(res));
+        .then((res) => {
+          this.accountCreated = res.data.accountCreated;
+          this.accountCreatedMessage = res.data.message;
+          //console.log(this.accountCreated, this.accountCreatedMessage);
+          this.submitformRedirect();
+        });
+    },
+
+    async submitformRedirect() {
+      let color;
+      if (this.accountCreated) {
+        color = "primary";
+        this.$router.push({ path: "Home" });
+        this.$store.commit('setUserType', {userType: this.userType});
+        this.$store.commit('setUserName', {userName: this.name});
+        this.$store.commit('setLoggedStatus', {loggedIn: true});
+      }
+      else{
+        color = "danger";
+      }
+
+      const toast = await toastController.create({
+        message: this.accountCreatedMessage,
+        duration: 4000,
+        color: color,
+        cssClass: "toast",
+      });
+      toast.present();
     },
   },
 };
@@ -168,9 +262,16 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Reggae+One&family=Roboto&display=swap");
 
+@media only screen and (min-width: 500px) {
+  .sub-card {
+    width: 500px;
+    margin: auto;
+  }
+}
+
 .vertical-center {
   height: 100%;
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 
 .center-text {
@@ -199,5 +300,12 @@ export default {
 
 form {
   padding-bottom: 20px;
+}
+.radio {
+  vertical-align: -5px;
+}
+
+.radio-label {
+  margin-left: 3px;
 }
 </style>

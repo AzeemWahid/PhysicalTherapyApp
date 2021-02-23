@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
 import App from './App.vue'
 import router from './router';
 import { IonicVue } from '@ionic/vue';
-import {defineCustomElements} from '@ionic/pwa-elements/loader';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import Axios from 'axios';
 
 /* Core CSS required for Ionic components to work properly */
@@ -24,16 +24,43 @@ import '@ionic/vue/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import '../public/assets/global.css'
+import '../public/assets/global.css';
 import './registerServiceWorker';
 
 
 const store = createStore({
-  state(){
+  state() {
     return {
-      counter : 1
+      userType: '',
+      userName: '',
+      loggedIn: false
+    }
+  },
+
+  mutations: {
+    setUserType(state, payload) {
+      state.userType = payload.userType;
+    },
+    setUserName(state, payload) {
+      state.userName = payload.userName;
+    },
+    setLoggedStatus(state, payload){
+      state.loggedIn = payload.loggedIn;
+    }
+  },
+
+  getters: {
+    getUserType(state) {
+      return state.userType;
+    },
+    getUserName(state) {
+      return state.userName;
+    },
+    getLoggedStatus(state){
+      return state.loggedIn;
     }
   }
+
 });
 
 const app = createApp(App)
