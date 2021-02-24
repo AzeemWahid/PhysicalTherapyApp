@@ -138,6 +138,8 @@ import {
   IonRow,
   IonCol,
   IonButton,
+  IonRadioGroup,
+  IonRadio,
   toastController,
 } from "@ionic/vue";
 import Login from "./Login";
@@ -158,6 +160,8 @@ export default {
     IonCol,
     IonButton,
     IonLabel,
+    IonRadioGroup,
+    IonRadio,
     toastController,
   },
 

@@ -56,6 +56,7 @@ import {
   IonList,
   IonItem,
   IonAvatar,
+  IonMenuToggle
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import SignUp from "./auth/SignUp";
@@ -77,6 +78,7 @@ export default defineComponent({
     IonList,
     IonItem,
     IonAvatar,
+    IonMenuToggle,
     SignUp,
     Login,
   },

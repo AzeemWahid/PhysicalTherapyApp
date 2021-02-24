@@ -87,6 +87,10 @@ import {
   IonCardSubtitle,
   IonCardContent,
   IonPage,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonButton,
   toastController,
 } from "@ionic/vue";
 import SignUp from "./SignUp";
@@ -101,6 +105,10 @@ export default {
     IonCardSubtitle,
     IonCardContent,
     IonPage,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonButton,
     toastController,
   },
 
@@ -164,7 +172,7 @@ export default {
         this.$store.commit("setUserName", { userName: this.name });
         this.$store.commit("setLoggedStatus", { loggedIn: true });
       }
-      
+
       if (this.loginMessage != undefined) {
         const toast = await toastController.create({
           message: this.loginMessage,
