@@ -33,10 +33,10 @@
                           <ion-label class="radio-label">PT Provider</ion-label>
                         </ion-col>
                       </ion-radio-group>
-                      <p v-if="!userTypeValid">Please select a choice</p>
                     </ion-row>
                   </ion-card>
-
+                  <p v-if="!userTypeValid">Please select a choice</p>
+                  
                   <ion-row class="ion-margin-top">
                     <ion-col>
                       <ion-card-content>
@@ -228,7 +228,7 @@ export default {
           name: this.name,
           email: this.email,
           password: this.password,
-          userType: this.userType
+          userType: this.userType,
         })
         .then((res) => {
           this.accountCreated = res.data.accountCreated;
@@ -243,11 +243,10 @@ export default {
       if (this.accountCreated) {
         color = "primary";
         this.$router.push({ path: "Home" });
-        this.$store.commit('setUserType', {userType: this.userType});
-        this.$store.commit('setUserName', {userName: this.name});
-        this.$store.commit('setLoggedStatus', {loggedIn: true});
-      }
-      else{
+        this.$store.commit("setUserType", { userType: this.userType });
+        this.$store.commit("setUserName", { userName: this.name });
+        this.$store.commit("setLoggedStatus", { loggedIn: true });
+      } else {
         color = "danger";
       }
 
