@@ -6,6 +6,8 @@ const logger = require('morgan');
 const serveStatic = require('serve-static')
 const mongoose = require('mongoose');
 
+
+
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -14,6 +16,10 @@ const indexRouter = require('./routes/index');
 
 app.use('/index', indexRouter);
 
+
+const exercisePosts = require("./routes/exercisePosts");
+
+app.use("/exercise", exercisePosts);
 
 //for heroku
 //here we are configuring dist to serve app files
