@@ -1,0 +1,11 @@
+.bg {
+  --ion-background-color: linear-gradient(to bottom right, #e2e7a2, #BDFFF3);
+}
+
+.menu-bg{
+  --ion-background-color: #c9f0ae;
+}
+
+.c-bg{
+  --ion-background-color: #B6FA27;
+}
