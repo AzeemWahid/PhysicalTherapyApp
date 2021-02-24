@@ -8,8 +8,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-
-
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -21,10 +19,6 @@ const userRouter = require('./routes/users');
 
 app.use('/index', indexRouter);
 app.use('/users', userRouter);
-
-const exercisePosts = require("./routes/exercisePosts");
-
-app.use("/exercise", exercisePosts);
 
 //for heroku
 //here we are configuring dist to serve app files
