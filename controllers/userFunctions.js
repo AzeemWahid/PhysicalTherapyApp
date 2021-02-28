@@ -17,7 +17,6 @@ function createUser(name, email, password, userType, res) {
 }
 
 
-
 exports.searchUserEmail = (req, res, next) => {
     User.find({ email: req.body.email }, function (err, theUser) {
         let email = req.body.email;
@@ -57,6 +56,7 @@ exports.login = (req, res, next) => {
         let userAccEmail = user[0].email;
         let userAccPassword = user[0].password;
         let userName = user[0].name;
+        let userType = user[0].userType;
 
         if (userAccEmail == email && userAccPassword != password) {
             res.send({
@@ -69,7 +69,7 @@ exports.login = (req, res, next) => {
 
         else {
             res.send({
-                userName,
+                userName, userType,
                 loginAttempt: true,
                 loginMessage: 'Login successful!'
             });

@@ -5,6 +5,9 @@
         <ion-buttons slot="start">
           <ion-menu-button color="dark"> </ion-menu-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-back-button color="dark" default-href="home"> </ion-back-button>
+        </ion-buttons>
         <ion-title color="dark"> {{ currentRouteName }} </ion-title>
       </ion-toolbar>
     </ion-header>
@@ -14,13 +17,26 @@
         <ion-content>
           <ion-list>
             <ion-menu-toggle>
-              <ion-item>PT Providers</ion-item>
-              <ion-item>Exercises</ion-item>
+              <router-link class="link" to="Home">
+                <ion-item>Home</ion-item>
+              </router-link>
+              <router-link class="link" to="FindProviders">
+                <ion-item>PT Providers</ion-item>
+              </router-link>
+              <router-link class="link" to="FindExercises">
+                <ion-item>Single Exercises</ion-item>
+              </router-link>
+              <router-link class="link" to="FindPrograms">
+                <ion-item>Exercise Programs</ion-item>
+              </router-link>
+              <router-link class="link" to="MyDashboard">
+                <ion-item>My Dashboard</ion-item>
+              </router-link>
               <router-link class="link" to="Login">
                 <ion-item v-if="!loginStatus">Login</ion-item>
               </router-link>
               <router-link class="link" to="SignUp">
-                <ion-item v-if="!loginStatus">Sign Up</ion-item>
+                <ion-item v-if="!loginStatus"> Sign Up </ion-item>
               </router-link>
               <ion-item v-if="userName">
                 <ion-avatar>
@@ -30,7 +46,9 @@
                 </ion-avatar>
                 Logged in as {{ userName }}
               </ion-item>
-              <ion-item class="link" v-if="loginStatus"> Sign Out</ion-item>
+              <ion-item class="link" v-if="loginStatus">
+                <ion-button @click="logout"> Sign Out </ion-button>
+              </ion-item>
             </ion-menu-toggle>
           </ion-list>
         </ion-content>
@@ -50,17 +68,24 @@ import {
   IonToolbar,
   IonButtons,
   IonTitle,
+  IonButton,
   IonMenuButton,
   IonMenu,
   IonContent,
   IonList,
   IonItem,
   IonAvatar,
-  IonMenuToggle
+  IonMenuToggle,
+  IonBackButton
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import SignUp from "./auth/SignUp";
 import Login from "./auth/Login";
+import Home from "./views/Home";
+import FindExercises from "./views/FindExercises";
+import FindProviders from "./views/FindProviders";
+import FindPrograms from "./views/FindPrograms";
+import MyDashboard from "./views/MyDashboard";
 
 export default defineComponent({
   name: "App",
@@ -78,9 +103,16 @@ export default defineComponent({
     IonList,
     IonItem,
     IonAvatar,
+    IonButton,
     IonMenuToggle,
+    IonBackButton,
     SignUp,
     Login,
+    Home,
+    FindExercises,
+    FindProviders,
+    FindPrograms,
+    MyDashboard
   },
 
   data() {
@@ -102,13 +134,13 @@ export default defineComponent({
   },
 
   methods: {
-    open() {
-      alert("opening");
+    logout() {
+      console.log("clicked");
+      this.$store.commit("logout");
     },
   },
 });
 </script>
 
 <style scoped>
-
 </style>

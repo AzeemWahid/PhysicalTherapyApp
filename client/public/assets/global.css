@@ -1,4 +1,5 @@
-.bg {
+
+.b {
   --ion-background-color: linear-gradient(to bottom right, #e2e7a2, #BDFFF3);
 }
 
@@ -6,8 +7,8 @@
   --ion-background-color: #c9f0ae;
 }
 
-.c-bg{
-  --ion-background-color: #B6FA27;
+.c-b{
+  --ion-background-color: #A412CC;
 }
 
 .toast{
@@ -17,4 +18,65 @@
 
 .link{
   text-decoration: none;
+}
+
+.text-c{
+  text-align: center;
+}
+
+.white{
+  color: white;
+}
+
+.black{
+  color: black;
+}
+
+.vertical-center {
+  height: 100%;
+  margin-top: 10vh;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-btn {
+  padding-bottom: 8px;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.form-width {
+  max-width: 1000px;
+}
+
+.input-field-width {
+  width: 100%;
+  max-width: 500px;
+}
+
+form {
+  padding-bottom: 20px;
+}
+
+
+:root {
+  --ion-color-vibrant: #ffff00;
+  --ion-color-vibrant-rgb: 255,255,0;
+  --ion-color-vibrant-contrast: #000000;
+  --ion-color-vibrant-contrast-rgb: 0,0,0;
+  --ion-color-vibrant-shade: #e0e000;
+  --ion-color-vibrant-tint: #ffff1a;
+}
+
+.ion-color-vibrant {
+  --ion-color-base: var(--ion-color-vibrant);
+  --ion-color-base-rgb: var(--ion-color-vibrant-rgb);
+  --ion-color-contrast: var(--ion-color-vibrant-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-vibrant-contrast-rgb);
+  --ion-color-shade: var(--ion-color-vibrant-shade);
+  --ion-color-tint: var(--ion-color-vibrant-tint);
 }

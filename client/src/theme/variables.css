@@ -74,6 +74,14 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+
+  --ion-color-vibrant: #ffc0cb;
+      --ion-color-vibrant-rgb: 255,192,203;
+      --ion-color-vibrant-contrast: #000000;
+      --ion-color-vibrant-contrast-rgb: 0,0,0;
+      --ion-color-vibrant-shade: #e0a9b3;
+      --ion-color-vibrant-tint: #ffc6d0;
 }
 
 @media (prefers-color-scheme: dark) {

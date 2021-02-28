@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createStore } from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 import App from './App.vue'
 import router from './router';
 import { IonicVue } from '@ionic/vue';
@@ -29,6 +30,7 @@ import './registerServiceWorker';
 
 
 const store = createStore({
+  plugins: [createPersistedState()],
   state() {
     return {
       userType: '',
@@ -46,6 +48,11 @@ const store = createStore({
     },
     setLoggedStatus(state, payload){
       state.loggedIn = payload.loggedIn;
+    },
+    logout(state, payload){
+      state.loggedIn = false;
+      state.userType = '',
+      state.userName = ''
     }
   },
 

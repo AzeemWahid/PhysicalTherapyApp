@@ -15,9 +15,9 @@
                     <ion-row>
                       <ion-col>
                         <ion-card-subtitle>
-                          Are you a patient seeking help or a phyiscal therapy
+                          Are you a patient seeking help or a physical therapy
                           provider?
-                        </ion-card-subtitle>
+                        </ion-card-subtitle> 
                       </ion-col>
                     </ion-row>
 
@@ -25,7 +25,7 @@
                       <ion-radio-group v-on:ionChange="radioValue($event)">
                         <ion-col size="4">
                           <ion-radio value="patient" class="radio"></ion-radio>
-                          <ion-label> PT Patient </ion-label>
+                          <ion-label class="white"> PT Patient </ion-label>
                         </ion-col>
 
                         <ion-col size="4">
@@ -36,12 +36,12 @@
                     </ion-row>
                   </ion-card>
                   <p v-if="!userTypeValid">Please select a choice</p>
-                  
+
                   <ion-row class="ion-margin-top">
                     <ion-col>
                       <ion-card-content>
-                        <input
-                          class="input-field-width"
+                        <ion-input
+                          class="input-field-width margin-auto"
                           type="name"
                           name="name"
                           placeholder="Name"
@@ -55,8 +55,8 @@
                   <ion-row>
                     <ion-col>
                       <ion-card-content>
-                        <input
-                          class="input-field-width"
+                        <ion-input
+                          class="input-field-width margin-auto"
                           type="email"
                           name="email"
                           placeholder="Email Address"
@@ -72,8 +72,8 @@
                   <ion-row>
                     <ion-col>
                       <ion-card-content>
-                        <input
-                          class="input-field-width"
+                        <ion-input
+                          class="input-field-width margin-auto"
                           type="password"
                           name="password"
                           placeholder="Password"
@@ -90,10 +90,7 @@
                   <ion-row>
                     <ion-col>
                       <ion-card-content>
-                        <ion-button
-                          type="button"
-                          color="primary"
-                          @click="submitForm"
+                        <ion-button color="success" type="button" @click="submitForm"
                           >Submit</ion-button
                         >
                       </ion-card-content>
@@ -104,7 +101,7 @@
                 <ion-card-subtitle>
                   Already have an account?
                   <router-link to="Login">
-                    <ion-button class="center-btn" size="small" color="primary">
+                    <ion-button color="success" class="center-btn" size="small">
                       Login
                     </ion-button>
                   </router-link>
@@ -140,6 +137,7 @@ import {
   IonButton,
   IonRadioGroup,
   IonRadio,
+  IonInput,
   toastController,
 } from "@ionic/vue";
 import Login from "./Login";
@@ -162,6 +160,7 @@ export default {
     IonLabel,
     IonRadioGroup,
     IonRadio,
+    IonInput,
     toastController,
   },
 
@@ -247,7 +246,7 @@ export default {
         this.$store.commit("setUserName", { userName: this.name });
         this.$store.commit("setLoggedStatus", { loggedIn: true });
       } else {
-        color = "danger";
+        color = "vibrant";
       }
 
       const toast = await toastController.create({
@@ -310,5 +309,32 @@ form {
 
 .radio-label {
   margin-left: 3px;
+  color: white;
 }
+
+ion-card {
+  --background: #a412cc;
+}
+
+p{
+  color: #ffff00;
+}
+
+ion-input {
+  --background: white;
+  border-radius: 5px;
+  --placeholder-color: black;
+  --placeholder-opacity: 0.8;
+}
+
+ion-card-title,
+ion-card-subtitle {
+  --color: white;
+}
+
+ion-radio {
+  --color: white;
+  --color-checked: #2dd36f;
+}
+
 </style>

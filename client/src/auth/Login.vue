@@ -14,9 +14,9 @@
                   <ion-row>
                     <ion-col>
                       <ion-card-content>
-                        <input
+                        <ion-input
                           v-model="email"
-                          class="input-field-width"
+                          class="input-field-width margin-auto"
                           type="email"
                           name="email"
                           placeholder="Email Address"
@@ -34,13 +34,14 @@
                   <ion-row>
                     <ion-col>
                       <ion-card-content>
-                        <input
+                        <ion-input
+                          class="input-field-width margin-auto"
                           v-model="password"
-                          class="input-field-width"
                           type="password"
                           name="password"
                           placeholder="Password"
-                        />
+                        >
+                        </ion-input>
                         <p v-if="!pwIsValid">Please enter a valid password</p>
                         <p v-if="!loginAttempt && pwIsValid">
                           {{ loginPwMessage }}
@@ -52,7 +53,7 @@
                   <ion-row>
                     <ion-col>
                       <ion-card-content>
-                        <ion-button @click="login" type="submit" color="primary"
+                        <ion-button color="success" @click="login" type="submit"
                           >Submit</ion-button
                         >
                       </ion-card-content>
@@ -63,7 +64,7 @@
                 <ion-card-subtitle>
                   Already have an account?
                   <router-link to="SignUp">
-                    <ion-button class="center-btn" size="small" color="primary">
+                    <ion-button color="success" class="center-btn" size="small">
                       SignUp
                     </ion-button>
                   </router-link>
@@ -91,6 +92,7 @@ import {
   IonRow,
   IonCol,
   IonButton,
+  IonInput,
   toastController,
 } from "@ionic/vue";
 import SignUp from "./SignUp";
@@ -109,6 +111,7 @@ export default {
     IonRow,
     IonCol,
     IonButton,
+    IonInput,
     toastController,
   },
 
@@ -120,6 +123,7 @@ export default {
       password: "",
       pwIsValid: true,
       emailIsValid: true,
+      userType: "",
       loginAttempt: "",
       loginEmailMessage: "",
       loginPwMessage: "",
@@ -131,6 +135,8 @@ export default {
     login() {
       this.pwIsValid = true;
       this.emailIsValid = true;
+
+      console.log(this.email, this.password);
 
       if (
         this.email === "" ||
@@ -159,6 +165,7 @@ export default {
           this.loginEmailMessage = res.data.loginEmailMessage;
           this.loginPwMessage = res.data.loginPwMessage;
           this.name = res.data.userName;
+          this.userType = res.data.userType;
           this.loginFormRedirect();
           //console.log(this.loginAttempt, this.loginMessage, this.name);
         });
@@ -170,6 +177,7 @@ export default {
         color = "primary";
         this.$router.push({ path: "Home" });
         this.$store.commit("setUserName", { userName: this.name });
+        this.$store.commit("setUserType", { userType: this.userType });
         this.$store.commit("setLoggedStatus", { loggedIn: true });
       }
 
@@ -188,36 +196,24 @@ export default {
 </script>
 
 <style scoped>
-.vertical-center {
-  height: 100%;
-  margin-top: 10vh;
+p {
+  color: yellow;
 }
 
-.center-text {
-  text-align: center;
+ion-card {
+  --background: #a412cc;
 }
 
-.center-btn {
-  padding-bottom: 8px;
+ion-card-title,
+ion-card-subtitle {
+  --color: white;
 }
 
-.margin-auto {
-  margin: auto;
-}
-
-.form-width {
-  max-width: 1000px;
-}
-
-.input-field-width {
-  width: 100%;
-  max-width: 500px;
-  border: 1px solid grey;
-  border-radius: 6px;
-  height: 30px;
-}
-
-form {
-  padding-bottom: 20px;
+ion-input {
+  --background: white;
+  border-radius: 5px;
+  --placeholder-color: black;
+  --placeholder-opacity: 0.8;
+  height: 35px;
 }
 </style>
