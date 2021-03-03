@@ -19,6 +19,13 @@
     "@ionic/pwa-elements": "^3.0.2",
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",
+    "@uppy/core": "^1.16.1",
+    "@uppy/dashboard": "^1.17.0",
+    "@uppy/informer": "^1.6.1",
+    "@uppy/status-bar": "^1.9.1",
+    "@uppy/tus": "^1.8.5",
+    "@uppy/vue": "^0.1.6",
+    "@uppy/xhr-upload": "^1.7.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-e2e-cypress": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -27,21 +34,28 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0-0",
     "@vue/test-utils": "^2.0.0-0",
+    "amd-loader": "^0.0.8",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "dropzone": "^5.7.6",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
     "express": "^4.17.1",
     "git": "^0.1.5",
     "register-service-worker": "^1.7.1",
+    "uppy": "^1.26.0",
     "vue": "^3.0.0-0",
     "vue-jest": "^5.0.0-0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0",
-    "vuex-persistedstate": "^4.0.0-beta.3"
+    "vuex-persistedstate": "^4.0.0-beta.3",
+    "webpack": "^4.46.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-pwa": "~4.5.0"
+    "@vue/cli-plugin-pwa": "~4.5.0",
+    "css-loader": "^3.6.0",
+    "style-loader": "^2.0.0",
+    "webpack-cli": "^4.5.0"
   },
   "proxy": "http://localhost:8000"
 }

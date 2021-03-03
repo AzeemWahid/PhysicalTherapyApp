@@ -8,17 +8,21 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const indexRouter = require('./routes/index');
-const userRouter = require('./routes/users');
+const port = process.env.PORT || 3000;
 
-app.use('/index', indexRouter);
+
+
+const userRouter = require('./routes/users');
+const exerciseRouter = require('./routes/exercises');
+
 app.use('/users', userRouter);
+app.use('/exercises', exerciseRouter);
 
 //for heroku
 //here we are configuring dist to serve app files
@@ -27,7 +31,7 @@ app.use('/', serveStatic(path.join(__dirname, '/client/dist')));
 //for heroku
 // this * route is to serve project on different page routes except root `/`
 app.get(/.*/, function (req, res) {
-	res.sendFile(path.join(__dirname, '/client/dist/index.html'))
+  res.sendFile(path.join(__dirname, '/client/dist/index.html'))
 });
 
 

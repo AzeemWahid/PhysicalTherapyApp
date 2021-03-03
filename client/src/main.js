@@ -6,6 +6,9 @@ import router from './router';
 import { IonicVue } from '@ionic/vue';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import Axios from 'axios';
+import Uppy from '@uppy/core'
+import Dashboard from '@uppy/dashboard';
+import Tus from '@uppy/tus';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -27,6 +30,9 @@ import '@ionic/vue/css/display.css';
 import './theme/variables.css';
 import '../public/assets/global.css';
 import './registerServiceWorker';
+import '@uppy/core/dist/style.css';
+import '@uppy/dashboard/dist/style.css';
+
 
 
 const store = createStore({

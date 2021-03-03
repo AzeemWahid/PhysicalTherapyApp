@@ -9,6 +9,7 @@ import FindExercises from '../views/FindExercises';
 import CreateCustomPEMenu from '../views/CreateCustomPEMenu';
 import CreateExercise from '../views/components/create-exercise';
 import CreateProgram from '../views/components/create-program';
+import ImgUploader from '../views/components/img-uploader';
 
 const routes = [
   {
@@ -64,6 +65,11 @@ const routes = [
     path: '/createprogram',
     name: 'Create Program',
     component: CreateProgram
+  },
+  {
+    path: '/imguploader',
+    name: 'Image Uploader',
+    component: ImgUploader
   },
 ]
 

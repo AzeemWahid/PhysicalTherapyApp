@@ -46,6 +46,7 @@
                           name="name"
                           placeholder="Name"
                           v-model="name"
+                          required
                         />
                         <p v-if="!nameIsValid">Please enter a valid name</p>
                       </ion-card-content>
